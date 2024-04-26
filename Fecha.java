@@ -10,7 +10,8 @@ public class Fecha {
     }
 
     public Fecha(Fecha fecha) {
-        throw new UnsupportedOperationException("No implementada aun");
+        this._dia = fecha._dia;
+        this._mes = fecha._mes;
     }
 
     public Integer dia() {
@@ -25,21 +26,38 @@ public class Fecha {
     public String toString() {
         StringBuffer sbuffer = new StringBuffer();
 
-        sbuffer.append(this._dia.toString());
+        sbuffer.append(this._dia);
         sbuffer.append("/");
-        sbuffer.append(this._mes.toString());
+        sbuffer.append(this._mes);
 
         return sbuffer.toString();
     }
 
     @Override
     public boolean equals(Object otra) {
-        throw new UnsupportedOperationException("No implementada aun");
+        
+        boolean claseDistinta = otra.getClass() != this.getClass();
+
+        if (claseDistinta) {
+            return false;
+        }
+
+        Fecha otraFecha = (Fecha) otra;
+
+        return _dia == otraFecha._dia && _mes == otraFecha._mes;
+
     }
 
     public void incrementarDia() {
         if (this._dia < diasEnMes(this._mes)) {
-            
+            this._dia++;
+        } else {
+            this._dia = 1;
+            if (this._mes < 12) {
+                this._mes++;
+            } else {
+                this._mes = 1;
+            }
         };
     }
 
