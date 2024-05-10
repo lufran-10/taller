@@ -7,16 +7,16 @@ public class Recordatorio {
 
     public Recordatorio(String mensaje, Fecha fecha, Horario horario) {
         this._mensaje = mensaje;
-        this._fecha = fecha;
-        this._horario = horario;
+        this._fecha = new Fecha(fecha);
+        this._horario = new Horario(horario.hora(), horario.minutos());
     }
 
     public Horario horario() {
-        return this._horario;
+        return new Horario(this._horario.hora(), this._horario.minutos());
     }
 
     public Fecha fecha() {
-        return this._fecha;
+        return new Fecha(this._fecha);
     }
 
     public String mensaje() {
@@ -39,6 +39,7 @@ public class Recordatorio {
     public boolean equals(Object otro) {
 
         boolean claseDistinta = otro.getClass() != this.getClass();
+
 
         if (claseDistinta) {
             return false;
